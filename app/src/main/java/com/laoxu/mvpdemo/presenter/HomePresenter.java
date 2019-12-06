@@ -2,35 +2,51 @@ package com.laoxu.mvpdemo.presenter;
 
 import android.content.Context;
 
+import com.laoxu.mvpdemo.base.mvp.BasePresenter;
 import com.laoxu.mvpdemo.contract.IHomeContract;
 import com.laoxu.mvpdemo.model.HomeModel;
 import com.laoxu.mvpdemo.model.entity.HomeEntity;
 
-public class HomePresenter implements IHomeContract.IPresenter {
-
-    private HomeModel homeModel;
-    private IHomeContract.IView iView;
-    public HomePresenter(IHomeContract.IView iView){
-        this.iView = iView;
-        homeModel = new HomeModel();
-
-    }
+public class HomePresenter extends BasePresenter<HomeModel, IHomeContract.IView> implements IHomeContract.IPresenter {
     @Override
     public void getHome() {
 
-        homeModel.getHome(new IHomeContract.IModel.ModelCallback() {
+        model.getHome(new IHomeContract.IModel.ModelCallback() {
             @Override
-            public void success(HomeEntity homeEntity) {
-                iView.success(homeEntity);
+            public void success(Object data) {
+                getView().success(data);
             }
 
             @Override
             public void error(Throwable throwable) {
 
-                iView.error(throwable);
+                getView().error(throwable);
             }
         });
 
+    }
 
+    @Override
+    public void getBanner() {
+
+        model.getBanner(new IHomeContract.IModel.ModelCallback() {
+            @Override
+            public void success(Object data) {
+                getView().success(data);
+            }
+
+            @Override
+            public void error(Throwable throwable) {
+
+                getView().error(throwable);
+
+            }
+        });
+
+    }
+
+    @Override
+    protected HomeModel initModel() {
+        return new HomeModel();
     }
 }
