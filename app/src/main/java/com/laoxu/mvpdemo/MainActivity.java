@@ -19,6 +19,7 @@ import com.laoxu.mvpdemo.model.adapter.RxxpAdapter;
 import com.laoxu.mvpdemo.model.entity.BannerEntity;
 import com.laoxu.mvpdemo.model.entity.HomeEntity;
 import com.laoxu.mvpdemo.presenter.HomePresenter;
+import com.laoxu.mvpdemo.utils.VolleyUtils;
 import com.stx.xhb.androidx.XBanner;
 import com.stx.xhb.androidx.transformers.Transformer;
 
@@ -38,6 +39,18 @@ public class MainActivity extends BaseActity<HomePresenter> implements IHomeCont
 
         presenter.getHome();//获取首页数据
         presenter.getBanner();//
+
+        VolleyUtils.getInstance().doGet("http://172.17.8.100/small/commodity/v1/findCommodityByKeyword", new VolleyUtils.VolleyCallback() {
+            @Override
+            public void success(String response) {
+
+            }
+
+            @Override
+            public void failure(Throwable error) {
+
+            }
+        });
 
 
 

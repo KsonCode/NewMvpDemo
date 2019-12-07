@@ -17,7 +17,7 @@ public class HomeModel implements IHomeContract.IModel {
     @Override
     public void getHome(final ModelCallback modelCallback) {
 
-        VolleyUtils.getInstance().doGet(new HashMap<String, String>(), Api.HOME_URL, new VolleyUtils.VolleyCallback() {
+        VolleyUtils.getInstance().doGet( Api.HOME_URL, new VolleyUtils.VolleyCallback() {
             @Override
             public void success(String response) {
 
@@ -43,7 +43,7 @@ public class HomeModel implements IHomeContract.IModel {
     @Override
     public void getBanner(final ModelCallback modelCallback) {
 
-        VolleyUtils.getInstance().doGet(new HashMap<String, String>(), Api.BANNER_URL, new VolleyUtils.VolleyCallback() {
+        VolleyUtils.getInstance().doGet(Api.BANNER_URL, new VolleyUtils.VolleyCallback() {
             @Override
             public void success(String response) {
 

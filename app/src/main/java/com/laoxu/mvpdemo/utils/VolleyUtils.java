@@ -8,7 +8,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.laoxu.mvpdemo.app.App;
@@ -54,20 +53,10 @@ public class VolleyUtils {
     /**
      * volley的get请求
      */
-    public void doGet(final Map<String, String> params, String url, final VolleyCallback volleyCallback) {
+    public void doGet(String url, final VolleyCallback volleyCallback) {
 
-        String endUrl = url+"?";
-
-        if (params!=null&&params.size()>0){
-            for (Map.Entry<String, String> stringStringEntry : params.entrySet()) {
-
-                endUrl+=stringStringEntry.getKey()+"="+stringStringEntry.getValue()+"&";
-
-            }
-        }
-        System.out.println("endurl==="+endUrl);
         //第二步
-        StringRequest stringRequest = new StringRequest(StringRequest.Method.GET, endUrl, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(StringRequest.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
